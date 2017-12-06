@@ -12,8 +12,14 @@ function init() {
     canvas = document.getElementById('myCanvas');
     ctx = myCanvas.getContext('2d');
     canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight-80;
+    canvas.height = window.innerHeight;
 }
+
+window.onresize = function() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    make_base();
+};
 
 function make_base()
 {
@@ -24,8 +30,8 @@ function make_base()
     base_image.onload = function(){
         width = this.width;
         height = this.height;
-	    x1 = canvas.width/2 - (width/2);
-	    y1 = canvas.height/2 - (height/2);
+	    x1 = Math.floor(canvas.width/2) - Math.floor(width/2);
+	    y1 = Math.floor(canvas.height/2) - Math.floor(height/2);
 	    ctx.drawImage(base_image, x1, y1);
 	    imageData(width, height, x1, y1);
     }
@@ -53,22 +59,20 @@ function imageData(w, h, x, y) {
 }
 
 function printColor(xclick, yclick) {
+    if (xclick < x1 || xclick > x1+width || yclick < y1 || yclick > y1+height)
+        return;
+
     var imgd = ctx.getImageData(x1, y1, width, height);
     var pix = imgd.data;
-
     var xpix = xclick - x1;
     var ypix = yclick - y1;
-    var index = (((ypix+1) * width) + (xpix - (width/2)))*4;
+    //var index = ((width*ypix)+xpix)*4;
    
-    //pix[index] = 255;
-    //pix[index+1] = 255;
-    //pix[index+2] = 255;
     //document.body.style.backgroundColor = "rgba(" + [pix[index], pix[index+1], pix[index+2], pix[index+3]].join(',') + ")";
-    //ctx.putImageData(imgd, x1, y1);
 }
 
 function printMousePos(event) {
-    printColor(event.clientX, event.clientY);
+    //printColor(event.clientX, event.clientY);
   }
 
 init();
