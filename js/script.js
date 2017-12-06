@@ -60,8 +60,11 @@ function printColor(xclick, yclick) {
     var ypix = yclick - y1;
     var index = (((ypix+1) * width) + (xpix - (width/2)))*4;
    
-    document.body.style.backgroundColor = "rgba(" + [pix[index], pix[index+1], pix[index+2], pix[index+3]].join(',') + ")";
-    ctx.putImageData(imgd, x1, y1);
+    //pix[index] = 255;
+    //pix[index+1] = 255;
+    //pix[index+2] = 255;
+    //document.body.style.backgroundColor = "rgba(" + [pix[index], pix[index+1], pix[index+2], pix[index+3]].join(',') + ")";
+    //ctx.putImageData(imgd, x1, y1);
 }
 
 function printMousePos(event) {
