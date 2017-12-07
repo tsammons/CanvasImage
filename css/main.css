@@ -3,3 +3,16 @@ body {
   padding: 0;
   background-color: white;
 }
+
+#palette {
+ height: 100px;
+ display: flex;
+ justify-content: center;
+}
+
+.swatch {
+  margin-left: 1.5px;
+  margin-right: 1.5px;
+  height: 100%;
+  width: 50px;
+}
